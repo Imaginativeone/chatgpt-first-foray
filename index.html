@@ -1,0 +1,29 @@
+<html>
+<head>
+  <script>
+    function allowDrop(ev) {
+      ev.preventDefault();
+    }
+
+    function drag(ev) {
+      ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+      ev.preventDefault();
+      var data = ev.dataTransfer.getData("text");
+      ev.target.appendChild(document.getElementById(data));
+    }
+  </script>
+</head>
+<body>
+  <div id="tree">
+    <div id="node1" draggable="true" ondragstart="drag(event)">Node 1</div>
+    <div id="node2" draggable="true" ondragstart="drag(event)">Node 2</div>
+    <div id="node3" draggable="true" ondragstart="drag(event)">Node 3</div>
+    <div id="node4" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <div id="node5" draggable="true" ondragstart="drag(event)">Node 5</div>
+    </div>
+  </div>
+</body>
+</html>
